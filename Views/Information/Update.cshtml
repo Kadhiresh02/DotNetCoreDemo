@@ -1,0 +1,26 @@
+﻿@{
+	ViewData["Title"] = "Update Information";
+}
+@model Information
+<a asp-action="Index" class="btn btn-secondary">Go Back</a>
+<h1 class="bg-info text-white">Update Information</h1>
+<form method="post">
+	<div class="form-group">
+		<label asp-for="Name"></label>
+		<input asp-for="Name" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="License"></label>
+		<input asp-for="License" class="form-control" />
+	</div>
+	<div>
+		<label asp-for="Established"></label>
+		<input asp-for="Established" type="datetime-local" class="form-control" />
+	</div>
+	<div>
+		<label asp-for="Revenue"></label>
+		<input asp-for="Revenue" type="number" class="form-control" />
+	</div>
+	<button type="submit" class="btn btn-primary">Update</button>
+</form>
+

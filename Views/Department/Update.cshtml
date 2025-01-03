@@ -1,0 +1,13 @@
+﻿@{
+	ViewData["Title"] = "Update Department";
+}
+@model Department
+<a asp-action="Index" class="btn btn-secondary">Go Back</a>
+<h1 class="bg-info text-white">Update Department Name</h1>
+<form method="post">
+	<div class="form-group">
+		<label asp-for="Name"></label>
+		<input asp-for="Name" class="form-control" />
+	</div>
+	<button type="submit" class="btn btn-primary">Update</button>
+</form>
