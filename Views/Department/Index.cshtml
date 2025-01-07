@@ -2,9 +2,17 @@
 @{
 	ViewData["Title"] = "Department List";
 }
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<h2>
+	Current DateTime and Year :@HttpContextAccessor.HttpContext.Session.GetString("CurrentDateTime"),
+	@HttpContextAccessor.HttpContext.Session.GetInt32("CurrentYear");
+</h2>
 @model IEnumerable<Department>
 <h1 class="bg-info text-white">Department List</h1>
 <a asp-action="Create" class="btn btn-secondary">Create Department</a>
+<h3>Current DateTime and Year :@ViewBag.CurrentDateTime and @ViewBag.CurrentYear </h3>
+<h3>Current User :@ViewBag.CurrentUser</h3>
 <table class="table table-sm table-bordered">
 	<tr>
 		<th>Id</th>

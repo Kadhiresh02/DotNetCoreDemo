@@ -31,6 +31,16 @@ namespace WebApplication1.Controllers
 
 
         }
+        public IActionResult SessionExample()
+        {
+
+            HttpContext.Session.SetString("CurrentDateTime", DateTime.Now.ToString());
+            HttpContext.Session.SetInt32("CurrentYear", DateTime.Now.Year);
+            HttpContext.Session.SetString("CurrentUser","Guest");
+            return RedirectToAction("Index");
+
+
+        }
         //public string CreateInformation()
         //{
         //    var info = new Information()
