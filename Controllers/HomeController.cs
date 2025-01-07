@@ -13,6 +13,23 @@ namespace WebApplication1.Controllers
             _logger = logger;
             context =cc;
         }
+        public IActionResult ViewBagExaple()
+        {
+            ViewBag.CurrentDateTime = DateTime.Now;
+            ViewBag.CurrentYear = DateTime.Now.Year;
+            ViewBag.CurrentUser = "Guest";
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult TempDataExample()
+        {
+            TempData["CurrentDateTime"]=DateTime.Now;
+            TempData["CurrentYear"] = DateTime.Now.Year;
+            TempData["CurrentUser"] = "Guest";
+            return RedirectToAction("Index");
+
+
+        }
         //public string CreateInformation()
         //{
         //    var info = new Information()
