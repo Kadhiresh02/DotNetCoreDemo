@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.VisualBasic;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 namespace WebApplication1.Models
 {
     public class CompanyContext : DbContext

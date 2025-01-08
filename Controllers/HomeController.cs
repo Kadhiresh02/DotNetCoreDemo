@@ -8,52 +8,29 @@ namespace WebApplication1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private CompanyContext context;
-        public HomeController(ILogger<HomeController> logger,CompanyContext cc)
+
+        public HomeController(ILogger<HomeController> logger, CompanyContext cc)
         {
             _logger = logger;
-            context =cc;
+            context = cc;
         }
-        public IActionResult ViewBagExaple()
+
+        public string CreateInformation()
         {
-            ViewBag.CurrentDateTime = DateTime.Now;
-            ViewBag.CurrentYear = DateTime.Now.Year;
-            ViewBag.CurrentUser = "Guest";
-            return RedirectToAction("Index");
+            var info = new Information()
+            {
+                Name = "Hematite Infotech",
+                License = "27AECH36F2S",
+                Revenue = 1000000,
+                Established = Convert.ToDateTime("2017/04/27")
+            };
+
+            context.Entry(info).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+            context.SaveChanges();
+
+            return "Record Added Successfully";
         }
 
-        public IActionResult TempDataExample()
-        {
-            TempData["CurrentDateTime"]=DateTime.Now;
-            TempData["CurrentYear"] = DateTime.Now.Year;
-            TempData["CurrentUser"] = "Guest";
-            return RedirectToAction("Index");
-
-
-
-        }
-        public IActionResult SessionExample()
-        {
-
-            HttpContext.Session.SetString("CurrentDateTime", DateTime.Now.ToString());
-            HttpContext.Session.SetInt32("CurrentYear", DateTime.Now.Year);
-            HttpContext.Session.SetString("CurrentUser","Guest");
-            return RedirectToAction("Index");
-
-
-        }
-        //public string CreateInformation()
-        //{
-        //    var info = new Information()
-        //    {
-        //        Name = "Hematite Infotech",
-        //        License = "27AAECH1657D1ZS",
-        //        Revenue = 100000,
-        //        Established = Convert.ToDateTime("2017/04/28")
-        //    };
-        //    context.Entry(info).State=Microsoft.EntityFrameworkCore.EntityState.Added;
-        //    context.SaveChanges();
-        //    return "record created successfully";
-        //}
         public IActionResult Index()
         {
             return View();
@@ -68,6 +45,31 @@ namespace WebApplication1.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult ViewBagExample()
+        {
+            ViewBag.CurrentDateTime = DateTime.Now;
+            ViewBag.CurrentYear = DateTime.Now.Year;
+            ViewBag.CurrentUser = "Dhanush";
+            return RedirectToAction("Index");
+            //return View();
+        }
+
+        public IActionResult TempDataExample()
+        {
+            TempData["CurrentDateTime"] = DateTime.Now;
+            TempData["CurrentYear"] = DateTime.Now.Year;
+            TempData["CurrentUser"] = "Arun";
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult SessionExample()
+        {
+            HttpContext.Session.SetString("CurrentDateTime", DateTime.Now.ToString());
+            HttpContext.Session.SetInt32("CurrentYear", DateTime.Now.Year);
+            HttpContext.Session.SetString("CurrentUser", "Admin");
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,25 +1,26 @@
-﻿@{
-	ViewData["Title"] = "Update Employee";
+﻿﻿@{
+    ViewData["Title"] = "Update Employee";
 }
+
 @model Employee
 <a asp-action="Index" class="btn btn-secondary">Go Back</a>
-<h1 class="bg-info text-white"> Update Employee </h1>
+<h1 class="bg-info text-white">Update Employee</h1>
 <form method="post">
 
-	<div class="from-group">
-		<label asp-for="Name"></label>
-		<input asp-for="Name" class="form-control" />
-	</div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
 
-	<div class="form-group">
-		<label asp-for="Department"></label>
-		<select asp-for="DepartmentId" asp-items="ViewBag.Department" class="form-control"></select>
-	</div>
+    <div class="form-group">
+        <label asp-for="Department"></label>
+        <select asp-for="DepartmentId" asp-items="ViewBag.Department" class="form-control"></select>
+    </div>
 
-	<div class="form-group">
-		<label asp-for="Designation"></label>
-		<input asp-for="Designation" class="form-control" />
-	</div>
+    <div class="form-group">
+        <label asp-for="Designation"></label>
+        <input asp-for="Designation" class="form-control" />
+    </div>
 
-	<button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>

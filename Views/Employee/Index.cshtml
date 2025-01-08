@@ -1,60 +1,64 @@
-﻿@* @{
-	ViewData["Title"] = "Employee List";
+﻿﻿  @{
+    ViewData["Title"] = "Employee List";
 }
-@model IEnumerable<Employee>
-<h1 class="bg-info text-white">Employee List</h1>
-<a asp-action="Create" class="btn btn-secondary">Create Employee</a>
-<table class="table table-sm table-bordered">
-	<tr>
-		<th>Id</th>
-		<th>Name</th>
-		
-		<th>Designation</th>
-		<th>DepartmentId</th>
-		<th>Department</th>
-		<th>Update</th>
-		<th>Delete</th>
-	</tr>
-	@foreach (Employee infor in Model)
-	{
-		<tr>
-			<td>@infor.Id</td>
-			<td>@infor.Name</td>
-			
-			<td>@infor.Designation</td>
-			<td>@infor.DepartmentId</td>
 
-			<td>@infor.Department.Name</td>
-			<td>
-				<a class="btn btn-sm btn-primary" asp-action="Update"
-				   asp-route-id="@infor.Id">Update</a>
-			</td>
-			<td>
-				<form asp-action="Delete" asp-route-id="@infor.Id" method="post">
-					<button type="submit" class="btn btn-sm btn-success">Delete</button>
-				</form>
-			</td>
-		</tr>
-	}
-</table>
- *@
- @model string 
- <h2>Login Form</h2>
- @{
-	 if(Model!=null)
-	 {
-		 <h3 class="p-3 mb-2 bg-success text-white">@Model</h3>
-	 }
- }
- <form method="post">
-	 <div class="form-group">
-		 <label >ID:</label>
-		 <input class="form-control" name="id"/>
+@* @model IEnumerable<Employee>
 
-	 </div>
-	<div class="form-group">
-		<label>Name:</label>
-		<input class="form-control" name="name" />
-	</div>
-	<button type="submit" class="btn btn-primary">Login</button>
- </form>
+  <h1 class="bg-info text-white">Employee List</h1>
+  <a asp-action="Create" class="btn btn-secondary">Create Employee</a>
+
+  <table class="table table-bordered mt-3">
+      <tr>
+          <th>ID: </th>
+          <th>Name: </th>
+          <th>Designation: </th>
+          <th>Department: </th>
+          <th>Update: </th>
+          <th>Delete: </th>
+      </tr>
+      @foreach (Employee emp in Model)
+      {
+          <tr>
+              <td>@emp.Id</td>
+              <td>@emp.Name</td>
+              <td>@emp.Designation</td>
+              <td>@emp.Department.Name</td>
+              <td>
+                  <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@emp.Id">Update</a>
+              </td>
+              <td>
+                  <form asp-action="Delete" asp-route-id="@emp.Id" method="post">
+                      <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                  </form>
+              </td>
+          </tr>
+      }
+  </table> *@
+
+  @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<h2>
+    Current DateTime and Year: @HttpContextAccessor.HttpContext.Session.GetString("CurrentDateTime"),@HttpContextAccessor.HttpContext.Session.GetInt32("CurrentYear")
+</h2>
+
+  @model string
+
+<h2>Login Form</h2>
+
+@{
+    if (Model != null)
+    {
+        <h3 class="p-3 mb-2 bg-success text-white">@Model</h3>
+    }
+}
+<form method="post">
+    <div class="form-group">
+        <label>ID:</label>
+        <input class="form-control" name="id" />
+    </div>
+    <div class="form-group">
+        <label>NAME:</label>
+        <input class="form-control" name="name" />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

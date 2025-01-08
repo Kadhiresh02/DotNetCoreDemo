@@ -12,35 +12,50 @@ namespace WebApplication1.Controllers
         {
             context = cc;
         }
+
         //public IActionResult Index()
         //{
-        //    return View(context.Employees.Include(e => e.Department));
+        //    return View(context.Employee.Include(s => s.Department));
         //}
+
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Index(int id,string name)
+        public IActionResult Index(int id, string name)
         {
-            string message = $"Welcome Employee :{name} (id:{id})";
+            string message = $"Welcome to the page Mr. {name} your Employee ID: {id}";
             return View((object)message);
         }
+
         public IActionResult Create()
         {
             List<SelectListItem> dept = new List<SelectListItem>();
             dept = context.Departments.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() }).ToList();
-            ViewBag.department = dept;
+
+            ViewBag.Department = dept;
             return View();
         }
         [HttpPost]
-        //[ActionName("Crate")]
         public async Task<IActionResult> Create(Employee emp)
         {
+            //List<SelectListItem> dept = new List<SelectListItem>();
+            //dept = context.Department.Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString() }).ToList();
+
+            //ViewBag.Department = dept;
+
+            //var employee = new Employee();
+
             context.Add(emp);
             await context.SaveChangesAsync();
             return RedirectToAction("Index");
+
+
         }
+
+
+
         public async Task<IActionResult> Update(int id)
         {
             Employee emp = await context.Employees.Include(e => e.Department).FirstOrDefaultAsync(e => e.Id == id);
